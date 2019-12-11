@@ -11,6 +11,7 @@ public class HomeController {
 		return "home.html";
 	}
 
+
 	@GetMapping("/home")
 	public String home() {
 		return null;
