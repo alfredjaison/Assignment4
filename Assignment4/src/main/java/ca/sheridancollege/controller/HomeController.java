@@ -22,6 +22,4 @@ public class HomeController {
 	public String home() {
 		return null;
 	}
-	jdfvadfnanmkfnbaf j sjjf jn pf n
 }
-alfred is a poo poo head
