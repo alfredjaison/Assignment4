@@ -17,11 +17,8 @@ public class HomeController {
 		return "login.html";
 	}
 
-
-	@GetMapping("/home")
+	@GetMapping("/search")
 	public String home() {
-		return null;
+		return "search.html";
 	}
-	jdfvadfnanmkfnbaf j sjjf jn pf n
 }
-alfred is a poo poo head
