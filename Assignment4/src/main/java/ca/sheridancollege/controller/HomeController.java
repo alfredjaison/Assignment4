@@ -8,6 +8,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String root() {
+		
 		return "home.html";
 	}
 	
@@ -17,4 +18,8 @@ public class HomeController {
 	}
 
 
+	@GetMapping("/home")
+	public String home() {
+		return null;
+	}
 }
