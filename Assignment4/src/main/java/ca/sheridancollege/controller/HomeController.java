@@ -10,6 +10,11 @@ public class HomeController {
 	public String root() {
 		return "home.html";
 	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login.html";
+	}
 
 
 }
