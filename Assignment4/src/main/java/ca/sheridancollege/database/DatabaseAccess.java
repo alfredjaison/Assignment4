@@ -26,6 +26,13 @@ public class DatabaseAccess {
 				new BeanPropertyRowMapper<User>(User.class));
 		return users;
 	}
+	public ArrayList<Phone> getPhones() {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "SELECT * FROM phone ORDER BY dateOfRelease";
+		ArrayList<Phone> phones = (ArrayList<Phone>)jdbc.query(query, parameters, 
+				new BeanPropertyRowMapper<Phone>(Phone.class));
+		return phones;
+	}
 	
 	public User getUserById(int userId) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
@@ -50,8 +57,8 @@ public class DatabaseAccess {
 	
 	public void addPhone(Phone phone) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "INSER INTO phone(manufacturer, model, price, screnSize, battery, ram, storage, processor, dimensions, waterProofRating) "
-				+ "VALUES(:manufacturer, :model, :price, :screnSize, :battery, :ram, :storage, :processor, :dimensions, :waterProofRating)";
+		String query = "INSERT INTO phone(manufacturer, model, price, screenSize, battery, ram, storage, processor, dimensions, waterProofRating) "
+				+ "VALUES(:manufacturer, :model, :price, :screenSize, :battery, :ram, :storage, :processor, :dimensions, :waterProofRating)";
 		parameters.addValue("manufacturer", phone.getManufacturer());
 		parameters.addValue("model", phone.getModel());
 		parameters.addValue("price", phone.getPrice());

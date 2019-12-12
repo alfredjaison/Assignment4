@@ -34,11 +34,22 @@ public class HomeController {
 	@GetMapping("/admin/addPhone")
 	public String addPhone(@ModelAttribute Phone phone) {
 		da.addPhone(phone);
-		return "addPhone.html";
+		return "admin/addPhone.html";
 	}
 
 	@GetMapping("/search")
-	public String home() {
+	public String userSearch() {
 		return "user/search.html";
+	}
+	@GetMapping("/latestReleases")
+	public String latestReleases(Model model) {
+		model.addAttribute("phones", da.getPhones());
+		System.out.println(da.getPhones());
+		return "user/latestReleases.html";
+	}
+	
+	@GetMapping("/survey")
+	public String surveyPage() {
+		return "user/survey.html";
 	}
 }
