@@ -31,6 +31,7 @@ public class HomeController {
 		
 		return "addPhone.html";
 	}
+	
 	@GetMapping("/admin/addPhone")
 	public String addPhone(@ModelAttribute Phone phone) {
 		da.addPhone(phone);

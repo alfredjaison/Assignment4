@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Home</title>
+<script src="static/sideBar.js"></script>
+<link rel="stylesheet" href="/static/sideBar.css">
 </head>
 <body>
 	<div class="header">
@@ -11,7 +13,9 @@
 			<img src="/images/logo.png" width="50px" height="30px">
 			<p>PHONEPEDIA</p>
 		</div>
-
+		
+		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+		
 		<div class="login" align="right">
 			<img src="images/user.png" width="20px" height="20px"/>
 			<p>
@@ -28,6 +32,14 @@
 				<input type="submit" name="searchSubmit" />
 			</form>
 
+		</div>
+		
+		<div id="mySidenav" class="sidenav">
+  			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  			<a href="#">About</a>
+  			<a href="#">Services</a>
+  			<a href="#">Clients</a>
+  			<a href="#">Contact</a>
 		</div>
 
 	</div>
