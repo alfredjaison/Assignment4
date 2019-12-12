@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import ca.sheridancollege.beans.Phone;
 import ca.sheridancollege.database.DatabaseAccess;
@@ -49,10 +50,17 @@ public class HomeController {
 		return "user/latestReleases.html";
 	}
 	
+	@GetMapping("/viewPhone/{phoneId}")
+	public String viewPhone(@PathVariable int phoneId) {
+		
+		return "user/viewPhone.html";
+	}
+	
 	@GetMapping("/survey")
 	public String surveyPage() {
 		return "user/survey.html";
 	}
+	
 	public String home() {
 		return "user/search.html";
 	}
