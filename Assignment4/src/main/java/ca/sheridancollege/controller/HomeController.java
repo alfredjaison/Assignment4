@@ -25,12 +25,13 @@ public class HomeController {
 	public String login() {
 		return "login.html";
 	}
-	
+
 	@GetMapping("/admin/goAddPhone")
 	public String addPhone(Model model) {
 		model.addAttribute("phone", new Phone());
 		return "admin/addPhone.html";
 	}
+	
 	@GetMapping("/admin/addPhone")
 	public String addPhone(@ModelAttribute Phone phone) {
 		da.addPhone(phone);
@@ -52,4 +53,8 @@ public class HomeController {
 	public String surveyPage() {
 		return "user/survey.html";
 	}
+	public String home() {
+		return "user/search.html";
+	}
+	
 }
