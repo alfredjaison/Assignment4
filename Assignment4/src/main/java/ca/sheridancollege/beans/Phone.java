@@ -18,5 +18,20 @@ public class Phone implements java.io.Serializable{
 	
 	private String[] manufacturers = {"Apple", "Samsung", "Google", "LG", "OnePlus", "Huawei"};
 	
+	public Phone(String manufacturer, String model, double price, String screenSize, int battery, 
+			int ram, int storage, String processor, String dimensions, String waterProofRating) {
+		
+		this.manufacturer = manufacturer;
+		this.model = model;
+		this.price = price;
+		this.screenSize = screenSize;
+		this.battery = battery;
+		this.ram = ram;
+		this.storage = storage;
+		this.processor = processor;
+		this.dimensions = dimensions;
+		this.waterProofRating = waterProofRating;
+	}
+	
 
 }

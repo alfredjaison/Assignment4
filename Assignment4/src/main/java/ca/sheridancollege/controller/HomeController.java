@@ -28,8 +28,8 @@ public class HomeController {
 
 	@GetMapping("/admin/goAddPhone")
 	public String addPhone(Model model) {
-		
-		return "addPhone.html";
+		model.addAttribute("phone", new Phone());
+		return "admin/addPhone.html";
 	}
 	
 	@GetMapping("/admin/addPhone")
