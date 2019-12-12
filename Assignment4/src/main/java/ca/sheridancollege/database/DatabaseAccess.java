@@ -26,13 +26,6 @@ public class DatabaseAccess {
 				new BeanPropertyRowMapper<User>(User.class));
 		return users;
 	}
-	public ArrayList<Phone> getPhones() {
-		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "SELECT * FROM phone ORDER BY dateOfRelease";
-		ArrayList<Phone> phones = (ArrayList<Phone>)jdbc.query(query, parameters, 
-				new BeanPropertyRowMapper<Phone>(Phone.class));
-		return phones;
-	}
 	
 	public User getUserById(int userId) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
@@ -52,24 +45,6 @@ public class DatabaseAccess {
 		parameters.addValue("userName", user.getUserName());
 		parameters.addValue("email", user.getEmail());
 		parameters.addValue("encryptedPassword", user.getEncryptedPassword());
-		jdbc.update(query, parameters);
-	}
-	
-	public void addPhone(Phone phone) {
-		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "INSERT INTO phone(manufacturer, model, price, screenSize, battery, ram, storage, processor, dimensions, waterProofRating, dateOfRelease) "
-				+ "VALUES(:manufacturer, :model, :price, :screenSize, :battery, :ram, :storage, :processor, :dimensions, :waterProofRating, :dateOfRelease)";
-		parameters.addValue("manufacturer", phone.getManufacturer());
-		parameters.addValue("model", phone.getModel());
-		parameters.addValue("price", phone.getPrice());
-		parameters.addValue("screenSize", phone.getScreenSize());
-		parameters.addValue("battery", phone.getBattery());
-		parameters.addValue("ram", phone.getRam());
-		parameters.addValue("storage", phone.getStorage());
-		parameters.addValue("processor", phone.getProcessor());
-		parameters.addValue("dimensions", phone.getDimensions());
-		parameters.addValue("waterProofRating", phone.getWaterProofRating());
-		parameters.addValue("dateOfRelease", phone.getDateOfRelease());
 		jdbc.update(query, parameters);
 	}
 	
@@ -95,5 +70,33 @@ public class DatabaseAccess {
 		parameters.addValue("roleId", roleId);
 		jdbc.update(query,  parameters);
 	}
+	
+	public ArrayList<Phone> getPhones() {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "SELECT * FROM phone ORDER BY dateOfRelease";
+		ArrayList<Phone> phones = (ArrayList<Phone>)jdbc.query(query, parameters, 
+				new BeanPropertyRowMapper<Phone>(Phone.class));
+		return phones;
+	}
+	
+	public void addPhone(Phone phone) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "INSERT INTO phone(manufacturer, model, price, screenSize, battery, ram, storage, processor, dimensions, waterProofRating, dateOfRelease) "
+				+ "VALUES(:manufacturer, :model, :price, :screenSize, :battery, :ram, :storage, :processor, :dimensions, :waterProofRating, :dateOfRelease)";
+		parameters.addValue("manufacturer", phone.getManufacturer());
+		parameters.addValue("model", phone.getModel());
+		parameters.addValue("price", phone.getPrice());
+		parameters.addValue("screenSize", phone.getScreenSize());
+		parameters.addValue("battery", phone.getBattery());
+		parameters.addValue("ram", phone.getRam());
+		parameters.addValue("storage", phone.getStorage());
+		parameters.addValue("processor", phone.getProcessor());
+		parameters.addValue("dimensions", phone.getDimensions());
+		parameters.addValue("waterProofRating", phone.getWaterProofRating());
+		parameters.addValue("dateOfRelease", phone.getDateOfRelease());
+		jdbc.update(query, parameters);
+	}
+	
+	
 
 }
