@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import ca.sheridancollege.beans.Phone;
 import ca.sheridancollege.beans.User;
 
 @Repository
@@ -39,10 +40,28 @@ public class DatabaseAccess {
 	
 	public void addUser(User user) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "INSER INTO user(name, email, encryptedPassword) VALUES(:name, :email, :encryptedPassword)";
+		String query = "INSER INTO user(name, email, encryptedPassword) "
+				+ "VALUES(:name, :email, :encryptedPassword)";
 		parameters.addValue("name", user.getName());
 		parameters.addValue("email", user.getEmail());
 		parameters.addValue("encryptedPassword", user.getEncryptedPassword());
+		jdbc.update(query, parameters);
+	}
+	
+	public void addPhone(Phone phone) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "INSER INTO phone(manufacturer, model, price, screnSize, battery, ram, storage, processor, dimensions, waterProofRating) "
+				+ "VALUES(:manufacturer, :model, :price, :screnSize, :battery, :ram, :storage, :processor, :dimensions, :waterProofRating)";
+		parameters.addValue("manufacturer", phone.getManufacturer());
+		parameters.addValue("model", phone.getModel());
+		parameters.addValue("price", phone.getPrice());
+		parameters.addValue("screenSize", phone.getScreenSize());
+		parameters.addValue("battery", phone.getBattery());
+		parameters.addValue("ram", phone.getRam());
+		parameters.addValue("storage", phone.getStorage());
+		parameters.addValue("processor", phone.getProcessor());
+		parameters.addValue("dimensions", phone.getDimensions());
+		parameters.addValue("waterProofRating", phone.getWaterProofRating());
 		jdbc.update(query, parameters);
 	}
 	
