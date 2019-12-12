@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Search</title>
@@ -16,12 +16,14 @@
 			<option>storage</option>
 		</select>
 		
-		<input type="text">
+		<input type="text" placeholder="Search..">
 		
 		<table>
-			<tr>
-			</tr>
-			<tr>
+			<tr th:each="phone : ${phones}">
+				<td><img src="#" th:src="@{img/}"></td>
+				<td th:text="${phone.manufaturer}"></td>
+				<td th:text="${phone.model}"></td>
+				<td th:text="${phone.prize}"></td>
 			</tr>
 		</table>
 		

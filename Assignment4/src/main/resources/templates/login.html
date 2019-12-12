@@ -5,6 +5,7 @@
 <title>Login</title>
 </head>
 <body>
+	<center>
 	<h1>Login</h1>
 
 		<form th:action="@{/login}" method="post">
@@ -18,13 +19,13 @@
 	</div>
 	
 	<div>
-		<label for="username">User Name:</label>
-		<input type="text" id="username" name="username" autofocus="autofocus" placeholder="username">
+		<input type="text" id="username" name="username" autofocus="autofocus" placeholder="Username">
 	</div>
+	<br>
 	<div>
-		<label for="password">Password:</label>
 		<input type="password" id="password" name="password" placeholder="Password">
 	</div>
+	<br>
 	<div>
 		<input type="submit" id="login-submit" name="login-submit" value="Login">
 	</div>
@@ -33,6 +34,8 @@
 	</form>
 	
 	<p><a href="/" th:href="@{/}">Back to home page</a></p>
+	
+	</center>
 
 </body>
 </html>

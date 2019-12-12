@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Add Phone</h1>
+	<form action="#" th:action="@{admin/addPhone}" th:object=${phone}
+		method="get">
+		
+		Manufacturer: 
+		<select th:field="*{manufacturer}">
+			<option th:each="m:*{manufacturers}" th:value="${m}" th:text="${m}">
+		</select><br>
+		 
+		Model: <input type="text" th:field="*{model}"><br>
+		Price: <input type="text" th:field="*{price}"><br>
+		Screen Size: <input type="text" th:field="*{screenSize}"><br>
+		Battery: <input type="text" th:field="*{battery}"><br>
+		Ram: <input type="text" th:field="*{ram}"><br>
+		Storage: <input type="text" th:field="*{storage}"><br>
+		Processor: <input type="text" th:field="*{processor}"><br>
+		Dimensions: <input type="text" th:field="*{dimensions}"><br>
+		Water Proof Rating: <input type="text" th:field="*{waterProofRating}"><br>
+
+	</form>
+
+</body>
+</html>
