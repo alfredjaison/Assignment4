@@ -40,9 +40,9 @@ public class DatabaseAccess {
 	
 	public void addUser(User user) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "INSER INTO user(name, email, encryptedPassword) "
-				+ "VALUES(:name, :email, :encryptedPassword)";
-		parameters.addValue("name", user.getName());
+		String query = "INSER INTO user(userName, email, encryptedPassword) "
+				+ "VALUES(:userName, :email, :encryptedPassword)";
+		parameters.addValue("userName", user.getUserName());
 		parameters.addValue("email", user.getEmail());
 		parameters.addValue("encryptedPassword", user.getEncryptedPassword());
 		jdbc.update(query, parameters);
@@ -79,5 +79,28 @@ public class DatabaseAccess {
 		}
 		return roles;
 	}
+
+	public User findUserAccount(String username) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "SELECT * FROM user WHERE userId = :username";
+		parameters.addValue("username", username);
+		ArrayList<User> users = (ArrayList<User>)jdbc.query(query, parameters, 
+				new BeanPropertyRowMapper<User>(User.class));
+		if(users.size() > 0)
+			return users.get(0);
+		return null;
+	}
+	
+	public void addRole(long userId, long roleId) {
+
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "insert into user_role (userId,roleId)" + "values (:user, :role);";
+		parameters.addValue("user", userId);
+		parameters.addValue("role", roleId);
+		jdbc.update(query, parameters);
+
+		}
+
+	
 
 }
