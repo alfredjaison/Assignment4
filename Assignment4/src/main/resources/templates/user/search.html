@@ -50,17 +50,20 @@
 		
 		<input type="text" placeholder="Search..">
 		
+		<input type="submit" value="Search">
+		
+		</form>
+		
 		<table>
 			<tr th:each="phone : ${phones}">
 				<td><img src="#" th:src="@{img/}"></td>
-				<td th:text="${phone.manufaturer}"></td>
+				<td th:text="${phone.manufacturer}"></td>
 				<td th:text="${phone.model}"></td>
 				<td th:text="${phone.prize}"></td>
 			</tr>
 		</table>
 		
 		
-	</form>
 
 
 

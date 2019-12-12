@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import ca.sheridancollege.beans.Phone;
 import ca.sheridancollege.beans.User;
 import ca.sheridancollege.database.DatabaseAccess;
@@ -39,13 +39,35 @@ public class HomeController {
 	@GetMapping("/admin/addPhone")
 	public String addPhone(@ModelAttribute Phone phone) {
 		da.addPhone(phone);
-		return "addPhone.html";
+		return "admin/addPhone.html";
 	}
 
 	@GetMapping("/search")
+	public String userSearch() {
+		return "user/search.html";
+	}
+	@GetMapping("/latestReleases")
+	public String latestReleases(Model model) {
+		model.addAttribute("phones", da.getPhones());
+		System.out.println(da.getPhones());
+		return "user/latestReleases.html";
+	}
+	
+	@GetMapping("/viewPhone/{phoneId}")
+	public String viewPhone(@PathVariable int phoneId) {
+		
+		return "user/viewPhone.html";
+	}
+	
+	@GetMapping("/survey")
+	public String surveyPage() {
+		return "user/survey.html";
+	}
+	
 	public String home() {
 		return "user/search.html";
 	}
+
 	
 	public static String encryptPassword(String password) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -62,5 +84,6 @@ public class HomeController {
 	return "redirect:/";
 
 	}
+
 	
 }

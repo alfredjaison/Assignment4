@@ -26,6 +26,13 @@ public class DatabaseAccess {
 				new BeanPropertyRowMapper<User>(User.class));
 		return users;
 	}
+	public ArrayList<Phone> getPhones() {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "SELECT * FROM phone ORDER BY dateOfRelease";
+		ArrayList<Phone> phones = (ArrayList<Phone>)jdbc.query(query, parameters, 
+				new BeanPropertyRowMapper<Phone>(Phone.class));
+		return phones;
+	}
 	
 	public User getUserById(int userId) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
@@ -50,8 +57,8 @@ public class DatabaseAccess {
 	
 	public void addPhone(Phone phone) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "INSER INTO phone(manufacturer, model, price, screnSize, battery, ram, storage, processor, dimensions, waterProofRating) "
-				+ "VALUES(:manufacturer, :model, :price, :screnSize, :battery, :ram, :storage, :processor, :dimensions, :waterProofRating)";
+		String query = "INSERT INTO phone(manufacturer, model, price, screenSize, battery, ram, storage, processor, dimensions, waterProofRating, dateOfRelease) "
+				+ "VALUES(:manufacturer, :model, :price, :screenSize, :battery, :ram, :storage, :processor, :dimensions, :waterProofRating, :dateOfRelease)";
 		parameters.addValue("manufacturer", phone.getManufacturer());
 		parameters.addValue("model", phone.getModel());
 		parameters.addValue("price", phone.getPrice());
@@ -62,6 +69,7 @@ public class DatabaseAccess {
 		parameters.addValue("processor", phone.getProcessor());
 		parameters.addValue("dimensions", phone.getDimensions());
 		parameters.addValue("waterProofRating", phone.getWaterProofRating());
+		parameters.addValue("dateOfRelease", phone.getDateOfRelease());
 		jdbc.update(query, parameters);
 	}
 	
@@ -79,6 +87,14 @@ public class DatabaseAccess {
 		}
 		return roles;
 	}
+	
+	public void addRole(long userId, long roleId) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "insert into user_role (userId, roleId) values (:userId, :roleId)";
+		parameters.addValue("userId", userId);
+		parameters.addValue("roleId", roleId);
+		jdbc.update(query,  parameters);
+	}
 
 	public User findUserAccount(String username) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
@@ -90,16 +106,6 @@ public class DatabaseAccess {
 			return users.get(0);
 		return null;
 	}
-	
-	public void addRole(long userId, long roleId) {
-
-		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "insert into user_role (userId,roleId)" + "values (:user, :role);";
-		parameters.addValue("user", userId);
-		parameters.addValue("role", roleId);
-		jdbc.update(query, parameters);
-
-		}
 
 	
 

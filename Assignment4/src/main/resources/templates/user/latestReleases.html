@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Latest Releases</title>
+</head>
+<body>
+	<h1>Latest Releases</h1>
+	<div th:each="phone : ${phones}"></div>
+	<a th:each="phone: ${phones}"
+		th:href="@{/viewPhone/{phoneId}(phoneId=${phone.phoneId})}">
+		<div>
+			<img src="#" th:src="@{img/}"> <span th:text="${phone.price}"></span><br>
+			<br> <span th:text="${phone.manufacturer}"></span> <span
+				th:text="${phone.model}"></span>
+		</div>
+	</a>
+	<table>
+		<tr th:each="phone : ${phones}">
+			<td><img src="#" th:src="@{img/}"></td>
+			<td th:text="${phone.manufacturer}"></td>
+			<td th:text="${phone.model}"></td>
+			<td th:text="${phone.price}"></td>
+		</tr>
+	</table>
+
+
+</body>
+</html>
