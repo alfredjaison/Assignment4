@@ -100,6 +100,30 @@ public class DatabaseAccess {
 			return phones;
 	}
 	
+	public ArrayList<Phone> getPhonesByLike(String string, String choice) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "SELECT * FROM phone WHERE " + choice +" LIKE :string";
+		parameters.addValue("string", "%" + string + "%");
+		
+		System.out.println(string + ", " + choice);
+		ArrayList<Phone> phones = (ArrayList<Phone>)jdbc.query(query, parameters, 
+				new BeanPropertyRowMapper<Phone>(Phone.class));
+			return phones;
+	}
+	public ArrayList<Phone> getPhonesByRange(double string, String choice) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "SELECT * FROM phone WHERE " + choice + " BETWEEN :lowNum AND :highNum";
+		double highNum = string + (string * 0.1);
+		double lowNum = string - (string * 0.1);
+		parameters.addValue("highNum","" + highNum);
+		parameters.addValue("lowNum", "" + lowNum);
+		
+		System.out.println(string + ", " + choice + ", " + highNum + ", " + lowNum);
+		ArrayList<Phone> phones = (ArrayList<Phone>)jdbc.query(query, parameters, 
+				new BeanPropertyRowMapper<Phone>(Phone.class));
+			return phones;
+	}
+	
 	public void addPhone(Phone phone) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
 		String query = "INSERT INTO phone(manufacturer, model, price, screenSize, battery, ram, storage, processor, dimensions, waterProofRating, dateOfRelease) "

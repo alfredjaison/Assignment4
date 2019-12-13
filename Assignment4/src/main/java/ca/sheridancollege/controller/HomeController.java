@@ -56,34 +56,26 @@ public class HomeController {
 
 		switch (searchBy) {
 		case "model":
-			phoneList = da.getPhonesBy(string, searchBy);
+			phoneList = da.getPhonesByLike(string, searchBy);
 			break;
 		case "maxPrice":
-			try {
-				phoneList = da.getPhonesBy(string, "price <");
-			} catch (NumberFormatException e) {
-				System.out.println("do nothing");
-			}
+			phoneList = da.getPhonesBy(string, "price <");
 			break;
 		case "minPrice":
-			try {
-				phoneList = da.getPhonesBy(string, "price >");
-			} catch (NumberFormatException e) {
-				System.out.println("do nothing");
-			}
+			phoneList = da.getPhonesBy(string, "price >");
 			break;
 		case "screenSize":
 			try {
-				phoneList = da.getPhonesBy(string, searchBy);
+				phoneList = da.getPhonesByRange(Double.parseDouble(string), searchBy);
 			} catch (NumberFormatException e) {
-				System.out.println("do nothing");
+				System.out.println("bad format");
 			}
 			break;
 		case "storage":
 			try {
-				phoneList = da.getPhonesBy(string, searchBy);
+				phoneList = da.getPhonesByRange(Double.parseDouble(string), searchBy);
 			} catch (ArrayIndexOutOfBoundsException e) {
-				System.out.println("wrong format for range search");
+				System.out.println("do nothing");
 			}
 			break;
 		}
@@ -112,12 +104,42 @@ public class HomeController {
 		model.addAttribute("phone", new Phone());
 		return "user/survey.html";
 	}
-	
+
 	@GetMapping("/findPhone")
-	public String findPhone(@ModelAttribute Phone phone) {
+	public String findPhone(@ModelAttribute Phone phone, Model model) {
+		ArrayList<Phone> allPhones = da.getPhones();
+		ArrayList<Phone> validPhones = new ArrayList<Phone>();
+		Phone bestChoice = new Phone();
+		int highestScore = 0;
+		for (Phone p : allPhones) {
+			int score = p.equalsSpecific(phone);
+			if (score > highestScore) {
+				highestScore = score;
+				bestChoice = p;
+				validPhones.clear();
+			}
+			else if (score == highestScore) {
+				validPhones.add(p);
+			}
+			System.out.println(score);
+		}
+		for (Phone p : allPhones) {
+			int score = p.equalsSpecific(phone);
+			if (score >= 6 && score != highestScore) {
+				validPhones.add(p);
+			}
+		}
 		
+		System.out.println("high score: " + highestScore);
+		System.out.println(validPhones);
+
+		validPhones.add(0, bestChoice);
 		
-		return "admin/addPhone.html";
+		System.out.println(validPhones);
+
+		model.addAttribute("validPhones", validPhones);
+
+		return "user/survey.html";
 	}
 
 	public static String encryptPassword(String password) {

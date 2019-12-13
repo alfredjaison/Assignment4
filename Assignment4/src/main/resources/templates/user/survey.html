@@ -23,9 +23,19 @@
 		Water Proof Rating: <input type="text" th:field="*{waterProofRating}"><br>
 		Date of release: <input type="date" th:field="*{dateOfRelease}"><br>
 		
-		<input type="submit" value="Add Phone">
+		<input type="submit" value="Search">
 
 	</form>
+	
+	<div th:each="phone : ${validPhones}" style="border: solid">
+		<a th:href="@{/viewPhone/{phoneId}(phoneId=${phone.phoneId})}">
+			<div>
+				<img src="#" th:src="@{img/}"> <span th:text="${phone.price}"></span><br>
+				<br> <span th:text="${phone.manufacturer}"></span> <span
+					th:text="${phone.model}"></span>
+			</div>
+		</a>
+	</div>
 
 </body>
 </html>
