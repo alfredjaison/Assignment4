@@ -6,23 +6,18 @@
 </head>
 <body>
 	<h1>Latest Releases</h1>
-	<div th:each="phone : ${phones}"></div>
-	<a th:each="phone: ${phones}"
-		th:href="@{/viewPhone/{phoneId}(phoneId=${phone.phoneId})}">
+	<div th:each="phone : ${phones}" style="border:solid">
+	<a th:href="@{/viewPhone/{phoneId}(phoneId=${phone.phoneId})}">
 		<div>
 			<img src="#" th:src="@{img/}"> <span th:text="${phone.price}"></span><br>
 			<br> <span th:text="${phone.manufacturer}"></span> <span
 				th:text="${phone.model}"></span>
 		</div>
 	</a>
-	<table>
-		<tr th:each="phone : ${phones}">
-			<td><img src="#" th:src="@{img/}"></td>
-			<td th:text="${phone.manufacturer}"></td>
-			<td th:text="${phone.model}"></td>
-			<td th:text="${phone.price}"></td>
-		</tr>
-	</table>
+	</div>
+	<br>
+	
+	
 
 
 </body>

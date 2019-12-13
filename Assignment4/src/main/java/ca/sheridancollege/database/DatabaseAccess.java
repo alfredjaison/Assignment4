@@ -40,7 +40,7 @@ public class DatabaseAccess {
 	
 	public void addUser(User user) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "INSER INTO user(userName, email, encryptedPassword) "
+		String query = "INSERT INTO user(userName, email, encryptedPassword) "
 				+ "VALUES(:userName, :email, :encryptedPassword)";
 		parameters.addValue("userName", user.getUserName());
 		parameters.addValue("email", user.getEmail());
@@ -65,7 +65,7 @@ public class DatabaseAccess {
 	
 	public void addRole(long userId, long roleId) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "insert into user_role (userId, roleId) values (:userId, :roleId);";
+		String query = "insert into user_role (userId, roleId) values (:userId, :roleId)";
 		parameters.addValue("userId", userId);
 		parameters.addValue("roleId", roleId);
 		jdbc.update(query,  parameters);
@@ -77,6 +77,26 @@ public class DatabaseAccess {
 		ArrayList<Phone> phones = (ArrayList<Phone>)jdbc.query(query, parameters, 
 				new BeanPropertyRowMapper<Phone>(Phone.class));
 		return phones;
+	}
+	
+	public Phone getPhoneById(int phoneId) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "SELECT * FROM phone WHERE phoneId = :phoneId";
+		parameters.addValue("phoneId", phoneId);
+		ArrayList<Phone> phones = (ArrayList<Phone>)jdbc.query(query, parameters, 
+				new BeanPropertyRowMapper<Phone>(Phone.class));
+		if(phones.size() > 0)
+			return phones.get(0);
+		return null;
+	}
+	
+	public ArrayList<Phone> getPhonesBy(String string, String choice) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "SELECT * FROM phone WHERE " + choice +"= :string";
+		parameters.addValue("string", string);
+		ArrayList<Phone> phones = (ArrayList<Phone>)jdbc.query(query, parameters, 
+				new BeanPropertyRowMapper<Phone>(Phone.class));
+			return phones;
 	}
 	
 	public void addPhone(Phone phone) {
@@ -97,6 +117,19 @@ public class DatabaseAccess {
 		jdbc.update(query, parameters);
 	}
 	
+	
+
+	public User findUserAccount(String username) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "SELECT * FROM user WHERE userId = :username";
+		parameters.addValue("username", username);
+		ArrayList<User> users = (ArrayList<User>)jdbc.query(query, parameters, 
+				new BeanPropertyRowMapper<User>(User.class));
+		if(users.size() > 0)
+			return users.get(0);
+		return null;
+	}
+
 	
 
 }

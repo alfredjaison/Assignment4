@@ -11,4 +11,11 @@ public class User implements java.io.Serializable{
 	private String email;
 	private String encryptedPassword;
 
+	
+	public User(String userName, String email, String encryptedPassword) {
+		this.userName = userName;
+		this.email =email;
+		this.encryptedPassword = encryptedPassword;
+	}
+
 }

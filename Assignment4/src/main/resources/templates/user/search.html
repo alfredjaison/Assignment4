@@ -2,81 +2,62 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" media="all" href="../static/sideBar.css" th:href="@{/sideBar.css}" >
+<link rel="stylesheet" type="text/css" media="all"
+	href="../static/css/sideBar.css" th:href="@{/css/sideBar.css}">
+<script th:src="@{/javascript/sideBar.js}"></script>
 <title>Search</title>
 </head>
 <body>
 
 	<div id="mySidenav" class="sidenav">
-  			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  			<a href="#" th:href="@{/}">Home</a>
-  			<a href="#" th:href="@{/about}">About</a>
-  			<a href="#" th:href="@{/lastestRelease}">Latest Release</a>
-  			<a href="#" th:href="@{/search}">Search</a>
-  			<a href="#" th:href="@{/survey}">Survey</a>
-  			
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="#" th:href="@{/}">Home</a> <a href="#" th:href="@{/about}">About</a>
+		<a href="#" th:href="@{/lastestRelease}">Latest Release</a> <a
+			href="#" th:href="@{/search}">Search</a> <a href="#"
+			th:href="@{/survey}">Survey</a>
+
 	</div>
-	
+
 	<div class="header">
 
 		<div align="left" class="logo">
-			<img src="/images/logo.png" width="50px" height="30px">
-			<span>PHONEPEDIA</span>
+			<img src="/images/logo.png" width="50px" height="30px"> <span>PHONEPEDIA</span>
 		</div>
-		
-		<span style="font-size:18px; cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-		
+
+		<span style="font-size: 18px; cursor: pointer" onclick="openNav()">&#9776;
+			Menu</span>
+
 		<div class="login" align="right">
-			<img src="images/user.png" width="20px" height="20px"/>
-			<span>
-				<a href="../template/login.html">Login</a> 
-				<a href="../template/register.html">Register</a>
+			<img src="images/user.png" width="20px" height="20px" /> <span>
+				<a href="../template/login.html">Login</a> <a
+				href="../template/register.html">Register</a>
 			</span>
 		</div>
 
 	</div>
-		
+
 	<h1>Search</h1>
 	<form>
-		Search by:
-		<select>
-			<option>model</option>
-			<option>max price</option>
-			<option>min price</option>
-			<option>screen size</option>
-			<option>storage</option>
-		</select>
-		
-		<input type="text" placeholder="Search..">
-		
-		<input type="submit" value="Search">
-		
-		</form>
-		
-		<table>
-			<tr th:each="phone : ${phones}">
-				<td><img src="#" th:src="@{img/}"></td>
-				<td th:text="${phone.manufacturer}"></td>
-				<td th:text="${phone.model}"></td>
-				<td th:text="${phone.prize}"></td>
-			</tr>
-		</table>
-		
-		
+		Search by: <select name="searchBy">
+			<option value="model">model</option>
+			<option value="maxPrice">max price</option>
+			<option value="minPrice">min price</option>
+			<option value="screenSize">screen size</option>
+			<option value="storage">storage</option>
+		</select> <input type="text" name="string" placeholder="Search.."> <input
+			type="submit" value="Search">
+	</form>
 
+	<span th:tex="'Search by ' + ${choice}"></span>
 
-
-<script>
- function openNav() {
-   document.getElementById("mySidenav").style.width = "250px";
- }
-
- function closeNav() {
-   document.getElementById("mySidenav").style.width = "0";
- }
-</script>
-
-
-
+	<div th:each="phone : ${phones}" style="border: solid">
+		<a th:href="@{/viewPhone/{phoneId}(phoneId=${phone.phoneId})}">
+			<div>
+				<img src="#" th:src="@{img/}"> <span th:text="${phone.price}"></span><br>
+				<br> <span th:text="${phone.manufacturer}"></span> <span
+					th:text="${phone.model}"></span>
+			</div>
+		</a>
+	</div>
 </body>
 </html>

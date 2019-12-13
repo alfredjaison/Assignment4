@@ -5,6 +5,7 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 public class Phone implements java.io.Serializable{
+	private int phoneId;
 	private String manufacturer;
 	private String model;
 	private double price;

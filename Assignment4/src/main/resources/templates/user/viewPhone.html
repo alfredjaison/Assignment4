@@ -2,9 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>View Phone</title>
+
+<title>ViewPhones</title>
 <link rel="stylesheet" type="text/css" media="all"
-	href="../static/sideBar.css" th:href="@{/sideBar.css}">
+	href="../static/css/sideBar.css" th:href="@{/css/sideBar.css}">
+<script th:src="@{/javascript/sideBar.js}"></script>
 </head>
 <body>
 
@@ -33,36 +35,22 @@
 		</div>
 
 	</div>
+
+	<div>
+		<img src="#" th:src="@{img/}">  
+		Manufacturer: <span th:text="${phone.manufacturer}"></span><br><br>
+		Model: <span th:text="${phone.model}"></span><br><br>
+		Price: $<span th:text="${phone.price}"></span><br><br>
+		Screen Size: <span th:text="${phone.screenSize}"></span><br><br>
+		Battery Capacity: <span th:text="${phone.battery}"></span><br><br>
+		RAM: <span th:text="${phone.ram}"></span><br><br>
+		Storage: <span th:text="${phone.storage}"></span><br><br>
+		Processor: <span th:text="${phone.processor}"></span><br><br>
+		Dimensions: <span th:text="${phone.dimensions}"></span><br><br>
+		Water Proof Rating: <span th:text="${phone.waterProofRating}"></span><br><br>
+		Date of Release: <span th:text="${phone.dateOfRelease}"></span><br><br>
+		
+	</div>
 	
-	<
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<script>
- function openNav() {
-   document.getElementById("mySidenav").style.width = "250px";
- }
-
- function closeNav() {
-   document.getElementById("mySidenav").style.width = "0";
- }
-</script>
-
 </body>
 </html>
