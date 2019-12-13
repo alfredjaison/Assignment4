@@ -94,6 +94,7 @@ public class DatabaseAccess {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
 		String query = "SELECT * FROM phone WHERE " + choice +"= :string";
 		parameters.addValue("string", string);
+		System.out.println(string + ", " + choice);
 		ArrayList<Phone> phones = (ArrayList<Phone>)jdbc.query(query, parameters, 
 				new BeanPropertyRowMapper<Phone>(Phone.class));
 			return phones;

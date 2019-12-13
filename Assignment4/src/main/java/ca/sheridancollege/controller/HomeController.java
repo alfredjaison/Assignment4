@@ -60,14 +60,14 @@ public class HomeController {
 			break;
 		case "maxPrice":
 			try {
-				phoneList = da.getPhonesBy(string = " <", searchBy);
+				phoneList = da.getPhonesBy(string, "price <");
 			} catch (NumberFormatException e) {
 				System.out.println("do nothing");
 			}
 			break;
 		case "minPrice":
 			try {
-				phoneList = da.getPhonesBy(string = " >", searchBy);
+				phoneList = da.getPhonesBy(string, "price >");
 			} catch (NumberFormatException e) {
 				System.out.println("do nothing");
 			}
@@ -108,8 +108,16 @@ public class HomeController {
 	}
 
 	@GetMapping("/survey")
-	public String surveyPage() {
+	public String surveyPage(Model model) {
+		model.addAttribute("phone", new Phone());
 		return "user/survey.html";
+	}
+	
+	@GetMapping("/findPhone")
+	public String findPhone(@ModelAttribute Phone phone) {
+		
+		
+		return "admin/addPhone.html";
 	}
 
 	public static String encryptPassword(String password) {

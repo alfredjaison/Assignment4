@@ -28,9 +28,7 @@
 			Menu</span>
 
 		<div class="login" align="right">
-			<img src="images/user.png" width="20px" height="20px" /> <span>
-				<a href="../template/login.html">Login</a> <a
-				href="../template/register.html">Register</a>
+			<img src="images/user.png" width="20px" height="20px" />
 			<span>
 				<a href="login.html" th:href="@{/login}">Login</a> 
 				<a href="register.html" th:href="@{/register}">Register</a>
@@ -40,7 +38,7 @@
 	</div>
 
 	<h1>Search</h1>
-	<form>
+	<form action="/search" method="get">
 		Search by: <select name="searchBy">
 			<option value="model">model</option>
 			<option value="maxPrice">max price</option>
