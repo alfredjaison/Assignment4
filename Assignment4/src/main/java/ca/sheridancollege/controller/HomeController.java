@@ -44,7 +44,7 @@ public class HomeController {
 		da.addPhone(phone);
 		return "admin/addPhone.html";
 	}
-	
+
 	@GetMapping("/goSearch")
 	public String goSearch() {
 		return "user/search.html";
@@ -56,25 +56,25 @@ public class HomeController {
 
 		switch (searchBy) {
 		case "model":
-				phoneList=da.getPhonesBy(string, searchBy);
+			phoneList = da.getPhonesBy(string, searchBy);
 			break;
 		case "maxPrice":
 			try {
-				phoneList=da.getPhonesBy(string = " <", searchBy);
+				phoneList = da.getPhonesBy(string = " <", searchBy);
 			} catch (NumberFormatException e) {
 				System.out.println("do nothing");
 			}
 			break;
 		case "minPrice":
 			try {
-				phoneList=da.getPhonesBy(string = " >", searchBy);
+				phoneList = da.getPhonesBy(string = " >", searchBy);
 			} catch (NumberFormatException e) {
 				System.out.println("do nothing");
 			}
 			break;
 		case "screenSize":
 			try {
-				phoneList=da.getPhonesBy(string, searchBy);
+				phoneList = da.getPhonesBy(string, searchBy);
 			} catch (NumberFormatException e) {
 				System.out.println("do nothing");
 			}
@@ -112,24 +112,31 @@ public class HomeController {
 		return "user/survey.html";
 	}
 
-	public String home() {
-		return "user/search.html";
-	}
-
 	public static String encryptPassword(String password) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		return encoder.encode(password);
 
 	}
 
-	@PostMapping("/register")
-	public String regUser(@RequestParam String userName, @RequestParam String email, @RequestParam String password) {
-		User user = new User(userName, email, encryptPassword(password));
-		da.addUser(user);
-		long userId = da.findUserAccount(userName).getUserId();
-		da.addRole(userId, 2);
-		return "redirect:/";
-
+	@GetMapping("/register")
+	public String goReg() {
+		return "register.html";
 	}
 
+	@PostMapping("/register")
+	public String regUser(@RequestParam String userName, @RequestParam String email, @RequestParam String password,
+			@RequestParam String confirmPassword, Model model) {
+		if (password.compareTo(confirmPassword) == 0) {
+			User user = new User(userName, email, encryptPassword(password));
+			da.addUser(user);
+			long userId = da.findUserAccount(userName).getUserId();
+			da.addRole(userId, 2);
+			return "redirect:/";
+		} else {
+			model.addAttribute("error", "*Password does not match");
+			return "/register";
+
+		}
+
+	}
 }
