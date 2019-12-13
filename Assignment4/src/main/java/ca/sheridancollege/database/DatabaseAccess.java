@@ -47,7 +47,7 @@ public class DatabaseAccess {
 	
 	public void addUser(User user) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "INSER INTO user(userName, email, encryptedPassword) "
+		String query = "INSERT INTO user(userName, email, encryptedPassword) "
 				+ "VALUES(:userName, :email, :encryptedPassword)";
 		parameters.addValue("userName", user.getUserName());
 		parameters.addValue("email", user.getEmail());
@@ -74,11 +74,11 @@ public class DatabaseAccess {
 	}
 	
 	public ArrayList<String> getRolesById(int userId){
+		System.out.println(userId);
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
 		ArrayList<String> roles = new ArrayList<String>();
-		String query = "SELECT * FROM role r "
-				+ "JOIN user_role ur ON r.roleId = ur.roleId"
-				+ "JOIN user u ON ur.userId = u.userId "
+		String query = "SELECT u.userId, r.roleName FROM user_role u "
+				+ "JOIN role r ON r.roleId = u.roleId "
 				+ "WHERE userId = :userId";
 		parameters.addValue("userId", userId);
 		List<Map<String,Object>> rows = jdbc.queryForList(query, parameters);
@@ -96,10 +96,10 @@ public class DatabaseAccess {
 		jdbc.update(query,  parameters);
 	}
 
-	public User findUserAccount(String username) {
+	public User findUserAccount(String userName) {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		String query = "SELECT * FROM user WHERE userId = :username";
-		parameters.addValue("username", username);
+		String query = "SELECT * FROM user WHERE userName = :username";
+		parameters.addValue("username", userName);
 		ArrayList<User> users = (ArrayList<User>)jdbc.query(query, parameters, 
 				new BeanPropertyRowMapper<User>(User.class));
 		if(users.size() > 0)

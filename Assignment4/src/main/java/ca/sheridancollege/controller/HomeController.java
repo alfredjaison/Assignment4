@@ -74,14 +74,25 @@ public class HomeController {
 		return encoder.encode(password);
 
 		}
+	@GetMapping("/register")
+	public String goReg() {
+		return "register.html";
+	}
 
 	@PostMapping("/register")
-	public String regUser(@RequestParam String userName,@RequestParam String email, @RequestParam String password) {
+	public String regUser(@RequestParam String userName,@RequestParam String email, @RequestParam String password,
+			@RequestParam String confirmPassword, Model model) {
+		if(password.compareTo(confirmPassword)==0) {
 		User user = new User(userName, email, encryptPassword(password));
 		da.addUser(user);
 		long userId = da.findUserAccount(userName).getUserId();
 		da.addRole(userId, 2);
-	return "redirect:/";
+		return "redirect:/";
+		}
+		else {
+			model.addAttribute("error", "*Password does not match");
+			return "/register";
+		}
 
 	}
 
