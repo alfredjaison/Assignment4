@@ -28,10 +28,11 @@
 
 		<div class="searchButton" align="center">
 
-			<form action="search">
-
-				<input type="search" name="searchField" /> 
-				<input type="submit" name="searchSubmit" />
+			<form action="/search" method="get">
+				
+				<input type="hidden" name="searchBy" value="model">
+				<input type="search" name="string" /> 
+				<input type="submit" value="Search" name="searchSubmit" />
 			</form>
 
 		</div>

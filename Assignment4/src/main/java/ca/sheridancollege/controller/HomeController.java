@@ -44,6 +44,55 @@ public class HomeController {
 		da.addPhone(phone);
 		return "admin/addPhone.html";
 	}
+	@GetMapping("/admin/goSearch")
+	public String adminGoSearch() {
+		return "admin/search.html";
+	}
+	
+	@GetMapping("/admin/search")
+	public String adminSearch(Model model, @RequestParam String searchBy, @RequestParam String string) {
+		ArrayList<Phone> phoneList= new ArrayList<Phone>();
+		switch (searchBy) {
+		case "phoneId":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "manufacturer":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "model":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "price":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "screenSize":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "battery":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "ram":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "storage":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "processor":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "dimensions":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "waterProofRating":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "dateOfRelease":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;		
+		}
+		model.addAttribute("phones", phoneList);
+		return "admin/search.html";
+	}
 
 	@GetMapping("/goSearch")
 	public String goSearch() {
@@ -74,6 +123,13 @@ public class HomeController {
 		case "storage":
 			try {
 				phoneList = da.getPhonesByRange(Double.parseDouble(string), searchBy);
+			} catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println("do nothing");
+			}
+			break;
+			case "dateOfRelease":
+			try {
+				phoneList = da.getPhonesBy(string, "dateOfRelease >");
 			} catch (ArrayIndexOutOfBoundsException e) {
 				System.out.println("do nothing");
 			}
@@ -141,6 +197,11 @@ public class HomeController {
 
 		return "user/survey.html";
 	}
+	
+	@GetMapping("/about")
+	public String aboutPage() {
+		return "user/about.html";
+	}
 
 	public static String encryptPassword(String password) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -169,4 +230,5 @@ public class HomeController {
 		}
 
 	}
+	
 }

@@ -39,17 +39,20 @@
 
 	<h1>Search</h1>
 	<form action="/search" method="get">
-		Search by: <select name="searchBy">
+		Search by: 
+		<select name="searchBy">
 			<option value="model">model</option>
 			<option value="maxPrice">max price</option>
 			<option value="minPrice">min price</option>
 			<option value="screenSize">screen size</option>
 			<option value="storage">storage</option>
-		</select> <input type="text" name="string" placeholder="Search.."> <input
-			type="submit" value="Search">
+			<option value="dateOfRelease">date of release</option>
+		</select> 
+		<input type="text" name="string" placeholder="Search.."> 
+		<input type="submit" value="Search">
 	</form>
 
-	<span th:tex="'Search by ' + ${choice}"></span>
+	<span th:text="'Search by ' + ${choice}"></span>
 
 	<div th:each="phone : ${phones}" style="border: solid">
 		<a th:href="@{/viewPhone/{phoneId}(phoneId=${phone.phoneId})}">
