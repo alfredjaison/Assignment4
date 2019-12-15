@@ -3,8 +3,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Survey</title>
+<th:block th:insert="~{fragments/sideNav.html :: sideBarCss}"></th:block>
+<th:block th:insert="~{fragments/sideNav.html :: sideBarJs}"></th:block>
 </head>
 <body>
+	<div th:insert="~{fragments/sideNav.html :: header}">
+	</div>
 	<form action="#" th:action="@{/findPhone}" th:object=${phone} method="get">
 		
 		Manufacturer: 
