@@ -3,6 +3,48 @@
 body {
   font-family: "Lato", sans-serif;
 }
+.outsideHeader{
+	background-color: #D4F0FC;
+	overflow: auto;
+}
+
+.logo img{
+	width:250px;
+}
+
+.header div{
+	display: inline-block;
+}
+
+.header input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.header .login{
+	float: right;
+	padding:20px 20px;
+	}
+	
+.header .searchButton{
+	padding:20px 20px;
+}
+	
+.header .searchButton button{
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.header .searchButton button:hover{
+	background: #ccc;
+	}
 
 .sidenav {
   height: 100%;
@@ -11,7 +53,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #02577A;;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -21,21 +63,34 @@ body {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: #FFF;
   display: block;
   transition: 0.3s;
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+  color: #01303F;
 }
 
 .sidenav .closebtn {
   position: absolute;
   top: 0;
-  right: 25px;
+  right: 0;
   font-size: 36px;
-  margin-left: 50px;
+  padding: 10px 20px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  color: #01303F;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover{
+	background-color: #02577A;
+	color: #FFF;
 }
 
 @media screen and (max-height: 450px) {

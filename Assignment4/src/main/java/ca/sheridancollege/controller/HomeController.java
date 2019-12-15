@@ -44,6 +44,7 @@ public class HomeController {
 		da.addPhone(phone);
 		return "admin/addPhone.html";
 	}
+	
 	@GetMapping("/admin/goSearch")
 	public String adminGoSearch() {
 		return "admin/search.html";
@@ -138,6 +139,7 @@ public class HomeController {
 
 		model.addAttribute("choice", searchBy);
 		model.addAttribute("phones", phoneList);
+		model.addAttribute("searchBy", searchBy);
 
 		return "user/search.html";
 	}
