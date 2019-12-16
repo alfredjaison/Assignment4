@@ -31,6 +31,7 @@
 		
 		<table border="1">
 			<tr>
+				<th>Phone Id</th>
 				<th>Manufacturer</th>
 				<th>Model</th>
 				<th>Price</th>
@@ -44,6 +45,7 @@
 				<th>Date of Release</th>
 			</tr>
 			<tr th:each="phone : ${phones}">
+				<td th:text="${phone.phoneId}"></td>
 				<td th:text="${phone.manufacturer}"></td>
 				<td th:text="${phone.model}"></td>
 				<td th:text="${phone.price}"></td>
@@ -55,10 +57,12 @@
 				<td th:text="${phone.dimensions}"></td>
 				<td th:text="${phone.waterProofRating}"></td>
 				<td th:text="${phone.dateOfRelease}"></td>
-				<td><a href="#">EDIT</a></td>
-				<td><a href="#">DELETE</a></td>
+				<td><a href="#" th:href="@{/admin/editPhone/{id}(id=${phone.phoneId})}">EDIT</a></td>
+				<td><a href="#" th:href="@{/admin/deletePhone/{id}(id=${phone.phoneId})}">DELETE</a></td>
 			</tr>
 		</table>
+		
+		<a href="#" th:href="@{/admin}">Admin Pages</a>
 		
 
 </body>

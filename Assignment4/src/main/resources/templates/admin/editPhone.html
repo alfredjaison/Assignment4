@@ -2,29 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title></title>
-<link rel="stylesheet" type="text/css" media="all"
-	href="../static/css/sideBar.css" th:href="@{/css/sideBar.css}">
-<script th:src="@{/javascript/sideBar.js}"></script>
+<title>Insert title here</title>
 </head>
 <body>
-
-	<div id="mySidenav" class="sidenav">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="#" th:href="@{/}">Home</a>
-  			<a href="#" th:href="@{/about}">About</a>
-  			<a href="#" th:href="@{/latestReleases}">Latest Releases</a>
-  			<a href="#" th:href="@{/search}">Search</a>
-  	</div>
-
-	<h1>Add Phone</h1>
-	<form action="#" th:action="@{/admin/addPhone}" th:object=${phone}
+	<form action="#" th:action="@{/admin/editPhone}" th:object=${phone}
 		method="get">
 		
 		Manufacturer: 
 		<select th:field="*{manufacturer}">
 			<option th:each="m:*{manufacturers}" th:value="${m}" th:text="${m}">
 		</select><br>
+		<input type="hidden" th:field="*{phoneId}">
 		 
 		Model: <input type="text" th:field="*{model}"><br>
 		Price: <input type="text" th:field="*{price}"><br>
@@ -37,11 +25,9 @@
 		Water Proof Rating: <input type="text" th:field="*{waterProofRating}"><br>
 		Date of release: <input type="date" th:field="*{dateOfRelease}"><br>
 		
-		<input type="submit" value="Add Phone">
+		<input type="submit" value="Edit Phone">
 
 	</form>
-	
-	<a href="#" th:href="@{/admin}">Admin Pages</a>
 
 </body>
 </html>
