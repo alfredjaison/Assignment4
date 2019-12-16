@@ -44,6 +44,13 @@ public class HomeController {
 		da.addPhone(phone);
 		return "admin/addPhone.html";
 	}
+	
+	@GetMapping("/admin/viewPhone")
+	public String viewPhone(Model model) {
+		model.addAttribute("phones", da.getPhones());
+		System.out.println(da.getPhones());
+		return "admin/viewPhone.html";
+	}
 
 	@GetMapping("/goSearch")
 	public String goSearch() {

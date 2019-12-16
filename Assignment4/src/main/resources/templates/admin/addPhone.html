@@ -2,9 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title></title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../static/css/sideBar.css" th:href="@{/css/sideBar.css}">
+<script th:src="@{/javascript/sideBar.js}"></script>
 </head>
 <body>
+
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="#" th:href="@{/}">Home</a>
+  			<a href="#" th:href="@{/about}">About</a>
+  			<a href="#" th:href="@{/latestReleases}">Latest Releases</a>
+  			<a href="#" th:href="@{/search}">Search</a>
+  	</div>
+
 	<h1>Add Phone</h1>
 	<form action="#" th:action="@{/admin/addPhone}" th:object=${phone}
 		method="get">
