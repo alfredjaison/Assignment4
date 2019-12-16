@@ -5,14 +5,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Add Phone</h1>
-	<form action="#" th:action="@{/admin/addPhone}" th:object=${phone}
+	<form action="#" th:action="@{/admin/editPhone}" th:object=${phone}
 		method="get">
 		
 		Manufacturer: 
 		<select th:field="*{manufacturer}">
 			<option th:each="m:*{manufacturers}" th:value="${m}" th:text="${m}">
 		</select><br>
+		<input type="hidden" th:field="*{phoneId}">
 		 
 		Model: <input type="text" th:field="*{model}"><br>
 		Price: <input type="text" th:field="*{price}"><br>
@@ -28,8 +28,6 @@
 		<input type="submit" value="Add Phone">
 
 	</form>
-	
-	<a href="#" th:href="@{/admin}">Admin Pages</a>
 
 </body>
 </html>

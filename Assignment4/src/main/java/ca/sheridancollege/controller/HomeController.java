@@ -38,7 +38,7 @@ public class HomeController {
 		return "admin/adminNavigation";
 	}
 	@GetMapping("/admin/goAddPhone")
-	public String addPhone(Model model) {
+	public String goAddPhone(Model model) {
 		model.addAttribute("phone", new Phone());
 		return "admin/addPhone.html";
 	}
@@ -99,6 +99,28 @@ public class HomeController {
 		return "admin/search.html";
 	}
 
+	@GetMapping("/admin/editPhone/{phoneId}")
+	public String goEdit(Model model, @PathVariable int phoneId) {
+		model.addAttribute("phone", da.getPhoneById(phoneId));
+		return "admin/editPhone.html";
+	}
+	
+	@GetMapping("/admin/editPhone")
+	public String editPhone(@ModelAttribute Phone phone, Model model) {
+		System.out.println(phone);
+		da.updatePhone(phone);
+		model.addAttribute("phones", da.getPhones());
+		return "admin/search.html";
+	}
+	
+	@GetMapping("/admin/deletePhone/{phoneId}")
+	public String deletePhone(Model model, @PathVariable int phoneId) {
+		System.out.println(phoneId);
+		da.deletePhone(phoneId);
+		model.addAttribute("phones", da.getPhones());
+		return "admin/search.html";
+	}
+	
 	@GetMapping("/goSearch")
 	public String goSearch() {
 		return "user/search.html";

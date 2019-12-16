@@ -142,6 +142,35 @@ public class DatabaseAccess {
 		jdbc.update(query, parameters);
 	}
 	
+	public void updatePhone(Phone phone) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "UPDATE phone SET manufacturer=:manufacturer, model=:model, price=:price, screenSize=:screenSize, "
+				+ "battery=:battery, ram=:ram, storage=:storage, processor=:processor, dimensions=:dimensions, "
+				+ "waterProofRating=:waterProofRating, dateOfRelease=:dateOfRelease WHERE phoneId=:phoneId";
+		
+		parameters.addValue("manufacturer", phone.getManufacturer());
+		parameters.addValue("model", phone.getModel());
+		parameters.addValue("price", phone.getPrice());
+		parameters.addValue("screenSize", phone.getScreenSize());
+		parameters.addValue("battery", phone.getBattery());
+		parameters.addValue("ram", phone.getRam());
+		parameters.addValue("storage", phone.getStorage());
+		parameters.addValue("processor", phone.getProcessor());
+		parameters.addValue("dimensions", phone.getDimensions());
+		parameters.addValue("waterProofRating", phone.getWaterProofRating());
+		parameters.addValue("dateOfRelease", phone.getDateOfRelease());
+		parameters.addValue("phoneId", phone.getPhoneId());
+		
+		jdbc.update(query, parameters);
+	}
+	
+	public void deletePhone(int phoneId) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		String query = "DELETE FROM phone WHERE phoneId=:phoneId";
+		parameters.addValue("phoneId", phoneId);
+		jdbc.update(query, parameters);
+	}
+	
 	
 
 	public User findUserAccount(String userName) {
