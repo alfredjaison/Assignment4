@@ -9,34 +9,6 @@
 </head>
 <body>
 
-	<div id="mySidenav" class="sidenav">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="#" th:href="@{/}">Home</a>
-  			<a href="#" th:href="@{/about}">About</a>
-  			<a href="#" th:href="@{/latestReleases}">Latest Releases</a>
-  			<a href="#" th:href="@{/search}">Search</a>
-  			<a href="#" th:href="@{/survey}">Survey</a>
-</div>
-	<div class="header">
-
-		<div align="left" class="logo">
-			<img src="/images/logo.png" width="50px" height="30px"> <span>PHONEPEDIA</span>
-		</div>
-
-		<span style="font-size: 18px; cursor: pointer" onclick="openNav()">&#9776;
-			Menu</span>
-
-		<div class="login" align="right">
-			<img src="images/user.png" width="20px" height="20px" /> 
-			<span>
-				<a href="login.html" th:href="@{/login}">Login</a> 
-				<a href="register.html" th:href="@{/register}">Register</a>
-			</span>
-		</div>
-
-	</div>
-
-
 	<div th:insert="~{fragments/sideNav.html :: header}">
 	</div>
 

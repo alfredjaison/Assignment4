@@ -1,0 +1,7 @@
+@charset "ISO-8859-1";
+
+.adminLink {
+	text-decoration: none;
+	border: solid 2px black;
+	padding: 10px, 12px;
+}

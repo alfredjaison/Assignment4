@@ -5,19 +5,20 @@
 <title>Register</title>
 <th:block th:insert="~{fragments/sideNav.html :: head/link}"></th:block>
 <th:block th:insert="~{fragments/sideNav.html :: head/script}"></th:block>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/register.css" th:href="@{/css/register.css}">
 </head>
 <body>
 	<div th:insert="~{fragments/sideNav.html :: header}">
 	</div>
-
+	<div align="center" class="register">
 	<h2>Register</h2>
 	<form action="register" th:action="@{/register}" method="post">
-		<span>UserName : </span><input type="text" name="userName"><br>
-		<span>email : </span><input type="email" name="email"><br>
-		<span>Password : </span><input type="password" name="password"><br>
+		<span>User Name        : </span><input type="text" name="userName"><br>
+		<span>Email            :    </span><input type="email" name="email"><br>
+		<span>Password         : </span><input type="password" name="password"><br>
 		<span>Confirm Password : </span><input type="password" name="confirmPassword"><br> <span th:text="${error}"></span><br>
 		<input type="submit" value="Register"><br>
 	</form>
-
+</div>
 </body>
 </html>
