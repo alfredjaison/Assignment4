@@ -4,9 +4,8 @@
 <meta charset="ISO-8859-1">
 
 <title>ViewPhones</title>
-<link rel="stylesheet" type="text/css" media="all"
-	href="../static/css/sideBar.css" th:href="@{/css/sideBar.css}">
-<script th:src="@{/javascript/sideBar.js}"></script>
+<th:block th:insert="~{fragments/sideNav.html :: head/link}"></th:block>
+<th:block th:insert="~{fragments/sideNav.html :: head/script}"></th:block>
 </head>
 <body>
 
@@ -17,7 +16,7 @@
   			<a href="#" th:href="@{/latestReleases}">Latest Releases</a>
   			<a href="#" th:href="@{/search}">Search</a>
   			<a href="#" th:href="@{/survey}">Survey</a>
-
+</div>
 	<div class="header">
 
 		<div align="left" class="logo">
@@ -35,6 +34,10 @@
 			</span>
 		</div>
 
+	</div>
+
+
+	<div th:insert="~{fragments/sideNav.html :: header}">
 	</div>
 
 	<div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/sideBar.css" th:href="@{/css/sideBar.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script th:src="@{/javascript/sideBar.js}" th:fragment="sideBarJs"></script>
+</head>
+<body>
+	<div class="outsideHeader" th:fragment="header">
+		<div class="logo">
+			 <h1>PHONEPEDIA</h1>
+		</div>
+		<div class="header">
+			<div>
+				<a class="openbtn" onclick="openNav()">&#9776; Menu</a>
+			</div>
+
+			<div id="mySidenav" class="sidenav">
+				<a href="javascript:void(0)" onclick="closeNav()">
+					<div class="closebtn">&times;</div>
+				</a> 
+				<a href="#" th:href="@{/}">Home</a>
+				<a href="#" th:href="@{/about}">About</a> 
+				<a href="#" th:href="@{/latestReleases}">Latest Releases</a> 
+				<a href="#" th:href="@{/goSearch}">Search</a> 
+				<a href="#" th:href="@{/survey}">Survey</a>
+
+			</div>
+
+			<div class="searchButton" align="center">
+				<form action="/search" method="get">
+					<input type="hidden" name="searchBy" value="model"> 
+					<input type="text" placeholder="Search.." name="string" />
+					<button type="submit"> <i class="fa fa-search"></i> </button>
+				</form>
+			</div>
+
+			<div class="login">
+				<img src="images/user.png" width="20px" height="20px" /> 
+				<span>
+					<a href="login.html" th:href="@{/login}">Login</a> 
+					<a href="register.html" th:href="@{/register}">Register</a>
+				</span>
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

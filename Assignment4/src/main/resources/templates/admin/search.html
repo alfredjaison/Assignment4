@@ -1,40 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Search</title>
 </head>
 <body>
 	<h1>Search</h1>
-	<form>
+	<form action="/admin/search" method="get">
 		Search by:
-		<select>
-			<option>model</option>
-			<option>max price</option>
-			<option>min price</option>
-			<option>screen size</option>
-			<option>storage</option>
+		<select name="searchBy">
+			<option value="manufacturer">manufacturer</option>
+			<option value="model">model</option>
+			<option value="price">price</option>
+			<option value="screenSize">screenSize</option>
+			<option value="battery">battery</option>
+			<option value="ram">ram</option>
+			<option value="storage">storage</option>
+			<option value="processor">processor</option>
+			<option value="dimensions">dimensions</option>
+			<option value="waterProofRating">waterProofRating</option>
+			<option value="dateOfRelease">dateOfRelease</option>
 		</select>
 		
-		<input type="text" placeholder="Search..">
+		<input type="text" name="string" placeholder="Search..">
+		<span th:text="'Search by ' + ${choice}"></span>
+		
+		<input type="submit" value="Search">
 		
 		</form>
 		
-		<table>
+		<table border="1">
 			<tr>
 				<th>Manufacturer</th>
 				<th>Model</th>
-				<th>Prize</th>
+				<th>Price</th>
 				<th>Screen Size</th>
 				<th>Battery</th>
 				<th>RAM</th>
 				<th>Storage</th>
 				<th>Processor</th>
 				<th>Dimensions</th>
-				<th>WaterProofing</th>
+				<th>Water Proof Rating</th>
+				<th>Date of Release</th>
 			</tr>
-			<tr>
-				<td></td>
+			<tr th:each="phone : ${phones}">
+				<td th:text="${phone.manufacturer}"></td>
+				<td th:text="${phone.model}"></td>
+				<td th:text="${phone.price}"></td>
+				<td th:text="${phone.screenSize}"></td>
+				<td th:text="${phone.battery}"></td>
+				<td th:text="${phone.ram}"></td>
+				<td th:text="${phone.storage}"></td>
+				<td th:text="${phone.processor}"></td>
+				<td th:text="${phone.dimensions}"></td>
+				<td th:text="${phone.waterProofRating}"></td>
+				<td th:text="${phone.dateOfRelease}"></td>
+				<td><a href="#">EDIT</a></td>
+				<td><a href="#">DELETE</a></td>
 			</tr>
 		</table>
 		

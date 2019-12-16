@@ -33,6 +33,10 @@ public class HomeController {
 		return "login.html";
 	}
 
+	@GetMapping("/admin")
+	public String adminNavigation() {
+		return "admin/adminNavigation";
+	}
 	@GetMapping("/admin/goAddPhone")
 	public String addPhone(Model model) {
 		model.addAttribute("phone", new Phone());
@@ -45,11 +49,62 @@ public class HomeController {
 		return "admin/addPhone.html";
 	}
 	
+
 	@GetMapping("/admin/viewPhone")
 	public String viewPhone(Model model) {
 		model.addAttribute("phones", da.getPhones());
 		System.out.println(da.getPhones());
 		return "admin/viewPhone.html";
+	}
+	@GetMapping("/admin/goSearch")
+	public String adminGoSearch() {
+		return "admin/search.html";
+	}
+	
+	@GetMapping("/admin/search")
+	public String adminSearch(Model model, @RequestParam String searchBy, @RequestParam String string) {
+		ArrayList<Phone> phoneList= new ArrayList<Phone>();
+		switch (searchBy) {
+		case "phoneId":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "manufacturer":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "model":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "price":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "screenSize":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "battery":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "ram":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "storage":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "processor":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "dimensions":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "waterProofRating":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;
+		case "dateOfRelease":
+			phoneList = da.getPhonesBy(string, searchBy);
+			break;		
+		}
+		model.addAttribute("phones", phoneList);
+		return "admin/search.html";
+
 	}
 
 	@GetMapping("/goSearch")
@@ -63,40 +118,40 @@ public class HomeController {
 
 		switch (searchBy) {
 		case "model":
-			phoneList = da.getPhonesBy(string, searchBy);
+			phoneList = da.getPhonesByLike(string, searchBy);
 			break;
 		case "maxPrice":
-			try {
-				phoneList = da.getPhonesBy(string, "price <");
-			} catch (NumberFormatException e) {
-				System.out.println("do nothing");
-			}
+			phoneList = da.getPhonesBy(string, "price <");
 			break;
 		case "minPrice":
-			try {
-				phoneList = da.getPhonesBy(string, "price >");
-			} catch (NumberFormatException e) {
-				System.out.println("do nothing");
-			}
+			phoneList = da.getPhonesBy(string, "price >");
 			break;
 		case "screenSize":
 			try {
-				phoneList = da.getPhonesBy(string, searchBy);
+				phoneList = da.getPhonesByRange(Double.parseDouble(string), searchBy);
 			} catch (NumberFormatException e) {
-				System.out.println("do nothing");
+				System.out.println("bad format");
 			}
 			break;
 		case "storage":
 			try {
-				phoneList = da.getPhonesBy(string, searchBy);
+				phoneList = da.getPhonesByRange(Double.parseDouble(string), searchBy);
 			} catch (ArrayIndexOutOfBoundsException e) {
-				System.out.println("wrong format for range search");
+				System.out.println("do nothing");
+			}
+			break;
+			case "dateOfRelease":
+			try {
+				phoneList = da.getPhonesBy(string, "dateOfRelease >");
+			} catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println("do nothing");
 			}
 			break;
 		}
 
 		model.addAttribute("choice", searchBy);
 		model.addAttribute("phones", phoneList);
+		model.addAttribute("searchBy", searchBy);
 
 		return "user/search.html";
 	}
@@ -119,12 +174,47 @@ public class HomeController {
 		model.addAttribute("phone", new Phone());
 		return "user/survey.html";
 	}
-	
+
 	@GetMapping("/findPhone")
-	public String findPhone(@ModelAttribute Phone phone) {
+	public String findPhone(@ModelAttribute Phone phone, Model model) {
+		ArrayList<Phone> allPhones = da.getPhones();
+		ArrayList<Phone> validPhones = new ArrayList<Phone>();
+		Phone bestChoice = new Phone();
+		int highestScore = 0;
+		for (Phone p : allPhones) {
+			int score = p.equalsSpecific(phone);
+			if (score > highestScore) {
+				highestScore = score;
+				bestChoice = p;
+				validPhones.clear();
+			}
+			else if (score == highestScore) {
+				validPhones.add(p);
+			}
+			System.out.println(score);
+		}
+		for (Phone p : allPhones) {
+			int score = p.equalsSpecific(phone);
+			if (score >= 6 && score != highestScore) {
+				validPhones.add(p);
+			}
+		}
 		
+		System.out.println("high score: " + highestScore);
+		System.out.println(validPhones);
+
+		validPhones.add(0, bestChoice);
 		
-		return "admin/addPhone.html";
+		System.out.println(validPhones);
+
+		model.addAttribute("validPhones", validPhones);
+
+		return "user/survey.html";
+	}
+	
+	@GetMapping("/about")
+	public String aboutPage() {
+		return "user/about.html";
 	}
 
 	public static String encryptPassword(String password) {
@@ -154,4 +244,5 @@ public class HomeController {
 		}
 
 	}
+	
 }

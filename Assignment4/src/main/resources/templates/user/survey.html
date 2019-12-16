@@ -3,8 +3,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Survey</title>
+<th:block th:insert="~{fragments/sideNav.html :: head/link}"></th:block>
+<th:block th:insert="~{fragments/sideNav.html :: head/script}"></th:block>
 </head>
 <body>
+	<div th:insert="~{fragments/sideNav.html :: header}">
+	</div>
 	<form action="#" th:action="@{/findPhone}" th:object=${phone} method="get">
 		
 		Manufacturer: 
@@ -23,9 +27,19 @@
 		Water Proof Rating: <input type="text" th:field="*{waterProofRating}"><br>
 		Date of release: <input type="date" th:field="*{dateOfRelease}"><br>
 		
-		<input type="submit" value="Add Phone">
+		<input type="submit" value="Search">
 
 	</form>
+	
+	<div th:each="phone : ${validPhones}" style="border: solid">
+		<a th:href="@{/viewPhone/{phoneId}(phoneId=${phone.phoneId})}">
+			<div>
+				<img src="#" th:src="@{img/}"> <span th:text="${phone.price}"></span><br>
+				<br> <span th:text="${phone.manufacturer}"></span> <span
+					th:text="${phone.model}"></span>
+			</div>
+		</a>
+	</div>
 
 </body>
 </html>

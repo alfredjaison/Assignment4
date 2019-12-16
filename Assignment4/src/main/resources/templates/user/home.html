@@ -4,11 +4,11 @@
 <meta charset="ISO-8859-1">
 <title>Home</title>
 
-<link rel="stylesheet" type="text/css" media="all" href="../static/css/sideBar.css" th:href="@{/css/sideBar.css}" >
-<script th:src="@{/javascript/sideBar.js}"></script>
-
+<th:block th:insert="~{fragments/sideNav.html :: head/link}"></th:block>
+<th:block th:insert="~{fragments/sideNav.html :: head/script}"></th:block>
 </head>
 <body>
+
 	<div class="header">
 
 		<div align="left" class="logo">
@@ -35,6 +35,7 @@
 			</form>
 
 		</div>
+		</div>
 		
 		<div id="mySidenav" class="sidenav">
   			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -46,21 +47,13 @@
   			
 		</div>
 
+	<div th:insert="~{fragments/sideNav.html :: header}">
+
 	</div>
-	
-	<div class="findPhone" align="left">
-			<h6>Find your phone today!</h6>
-			<a href="../template/findPhone.html">find!</a>
+	<br>
+	<div class="adminLink" align="left">
+			<a href="#" th:href="@{/admin}">Admin Pages</a>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 

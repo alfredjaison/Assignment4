@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" media="all"
-	href="../static/css/sideBar.css" th:href="@{/css/sideBar.css}">
-<script th:src="@{/javascript/sideBar.js}"></script>
 <title>Latest Releases</title>
+<th:block th:insert="~{fragments/sideNav.html :: head/link}"></th:block>
+<th:block th:insert="~{fragments/sideNav.html :: head/script}"></th:block>
 </head>
 <body>
+
 		<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<a href="#" th:href="@{/}">Home</a>
@@ -34,6 +34,9 @@
 				<a href="register.html" th:href="@{/register}">Register</a>
 			</span>
 		</div>
+</div>
+
+	<div th:insert="~{fragments/sideNav.html :: header}">
 
 	</div>
 	
