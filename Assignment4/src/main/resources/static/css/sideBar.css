@@ -2,9 +2,12 @@
 
 body {
   font-family: "Lato", sans-serif;
+  color: #01303F;
 }
 .outsideHeader{
-	background-color: #D4F0FC;
+	height:100%;
+	width:100%;
+	background-color: #a9b8d6;
 	overflow: auto;
 }
 
@@ -89,6 +92,20 @@ body {
 }
 
 .openbtn:hover{
+	background-color: #02577A;
+	color: #FFF;
+}
+
+.login a{
+  text-decoration:none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #01303F;
+  padding: 10px 15px;
+  border: none;
+}
+
+.login a:hover{
 	background-color: #02577A;
 	color: #FFF;
 }
