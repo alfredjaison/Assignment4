@@ -33,6 +33,10 @@ public class HomeController {
 		return "login.html";
 	}
 
+	@GetMapping("/admin")
+	public String adminNavigation() {
+		return "admin/adminNavigation";
+	}
 	@GetMapping("/admin/goAddPhone")
 	public String addPhone(Model model) {
 		model.addAttribute("phone", new Phone());

@@ -1,116 +1,121 @@
 @charset "ISO-8859-1";
 
 body {
-  font-family: "Lato", sans-serif;
-  color: #01303F;
+	font-family: "Lato", sans-serif;
+	color: #01303F;
+	margin:0;
 }
-.outsideHeader{
-	height:100%;
-	width:100%;
-	background-color: #a9b8d6;
+.outsideHeader {
+	height: 100%;
+	width: 100%; background-color : #a9b8d6;
 	overflow: auto;
+	background-color: #a9b8d6;
 }
 
-.logo img{
-	width:250px;
+.logo img {
+	width: 250px;
 }
 
-.header div{
+.header div {
 	display: inline-block;
 }
 
 .header input[type=text] {
-  padding: 6px;
-  margin-top: 8px;
-  font-size: 17px;
-  border: none;
+	padding: 6px;
+	margin-top: 8px;
+	font-size: 17px;
+	border: none;
 }
 
-.header .login{
+.header .login {
 	float: right;
-	padding:20px 20px;
-	}
-	
-.header .searchButton{
-	padding:20px 20px;
-}
-	
-.header .searchButton button{
-  padding: 6px 10px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #ddd;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
+	padding: 20px 20px;
 }
 
-.header .searchButton button:hover{
+.header .searchButton {
+	padding: 20px 20px;
+}
+
+.header .searchButton button {
+	padding: 6px 10px;
+	margin-top: 8px;
+	margin-right: 16px;
+	background: #ddd;
+	font-size: 17px;
+	border: none;
+	cursor: pointer;
+}
+
+.header .searchButton button:hover {
 	background: #ccc;
-	}
+}
 
 .sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #02577A;;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #02577A;;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #FFF;
-  display: block;
-  transition: 0.3s;
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #FFF;
+	display: block;
+	transition: 0.3s;
 }
 
 .sidenav a:hover {
-  color: #01303F;
+	color: #01303F;
 }
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 36px;
-  padding: 10px 20px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 36px;
+	padding: 10px 20px;
 }
 
 .openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  color: #01303F;
-  padding: 10px 15px;
-  border: none;
+	font-size: 20px;
+	cursor: pointer;
+	color: #01303F;
+	padding: 10px 15px;
+	border: none;
 }
 
-.openbtn:hover{
+.openbtn:hover {
 	background-color: #02577A;
 	color: #FFF;
 }
 
-.login a{
-  text-decoration:none;
-  font-size: 20px;
-  cursor: pointer;
-  color: #01303F;
-  padding: 10px 15px;
-  border: none;
+.login a {
+	text-decoration: none;
+	font-size: 20px;
+	cursor: pointer;
+	color: #01303F;
+	padding: 10px 15px;
+	border: none;
 }
 
-.login a:hover{
+.login a:hover {
 	background-color: #02577A;
 	color: #FFF;
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
 }
