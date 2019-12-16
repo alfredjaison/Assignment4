@@ -9,6 +9,9 @@
 <body>
 	<div th:insert="~{fragments/sideNav.html :: header}">
 	</div>
+	
+	<h2>Find a phone suited to your specifications</h2>
+	
 	<form action="#" th:action="@{/findPhone}" th:object=${phone} method="get">
 		
 		Manufacturer: 
@@ -27,7 +30,7 @@
 		Water Proof Rating: <input type="text" th:field="*{waterProofRating}"><br>
 		Date of release: <input type="date" th:field="*{dateOfRelease}"><br>
 		
-		<input type="submit" value="Search">
+		<input type="submit" value="Find Phone">
 
 	</form>
 	

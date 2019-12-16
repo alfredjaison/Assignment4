@@ -19,6 +19,17 @@ public class DatabaseAccess {
 	@Autowired
 	NamedParameterJdbcTemplate jdbc;
 	
+	public void createDummyRecords() {
+		addPhone(new Phone("LG", "G4", 399.0, "5.5", 3000, 3, 32, "1.4GHz hexa-core Qualcomm Snapdragon 808", "148 x 76 x 6", "N/A", "2015-04-01"));
+		addPhone(new Phone("Apple", "iPhone 7 Plus", 899.0, "5.5", 2900, 3, 256, "2.34GHz Quad-core Apple A10 Fusion", "158 x 78 x 7", "IP67", "2016-09-01"));
+		addPhone(new Phone("Samsung", "Galaxy Note 8", 499.0, "6.3", 3300, 6, 256, "2.3GHz Octa-core Qualcomm Snapdragon 835", "162 x 74 x 9", "IP68", "2017-09-01"));
+		addPhone(new Phone("Google", "Pixel 3", 799.0, "5.5", 2915, 4, 128, "2.5GHz Octa-core Qualcomm Snapdragon 845", "145 x 68 x 8", "IP68", "2018-11-01"));
+		addPhone(new Phone("Samsung", "Galaxy A70", 499.0, "6.7", 4500, 6, 128, "2GHz octa-core Qualcomm Snapdragon 675", "164 x 76 x 7", "N/A", "2019-04-01"));
+		addPhone(new Phone("Apple", "iPhone 11 Pro Max", 1099.99, "6.5", 3969, 4, 512, "2GHz hexa-core Apple A13 Bionic", "158 x 77 x 8", "IP68", "2019-09-01"));
+		addPhone(new Phone("Huawei", "Mate 30 Pro", 1200.0, "6.53", 4500, 8, 256, "2.86GHz Octa-core HiSilicon Kirin 990", "158 x 73 x 9", "IP68", "2019-09-01"));
+		addPhone(new Phone("OnePlus", "7T", 799.0, "6.55", 3800, 8, 256, "2.96GHz Octa-core Qualcomm Snapdragon 855+", "160 x 74 x 8", "N/A", "2019-10-01"));
+	}
+	
 	public ArrayList<User> getUsers() {
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
 		String query = "SELECT * FROM user";

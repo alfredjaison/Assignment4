@@ -37,6 +37,7 @@ public class HomeController {
 	public String adminNavigation() {
 		return "admin/adminNavigation";
 	}
+	
 	@GetMapping("/admin/goAddPhone")
 	public String goAddPhone(Model model) {
 		model.addAttribute("phone", new Phone());
@@ -50,7 +51,8 @@ public class HomeController {
 	}
 	
 	@GetMapping("/admin/goSearch")
-	public String adminGoSearch() {
+	public String adminGoSearch(Model model) {
+		model.addAttribute("phones", da.getPhones());
 		return "admin/search.html";
 	}
 	
@@ -121,6 +123,12 @@ public class HomeController {
 		return "admin/search.html";
 	}
 	
+	@GetMapping("/admin/createDummyRecords")
+	public String createDummyRecords() {
+		da.createDummyRecords();
+		return "admin/adminNavigation.html";
+	}
+	
 	@GetMapping("/goSearch")
 	public String goSearch() {
 		return "user/search.html";
@@ -173,7 +181,9 @@ public class HomeController {
 	@GetMapping("/latestReleases")
 	public String latestReleases(Model model) {
 		model.addAttribute("phones", da.getPhones());
-		System.out.println(da.getPhones());
+		for(Phone phone : da.getPhones()) {
+			System.out.println(phone);
+		}
 		return "user/latestReleases.html";
 	}
 
