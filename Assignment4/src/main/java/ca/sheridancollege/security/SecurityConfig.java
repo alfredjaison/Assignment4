@@ -27,11 +27,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override 
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-<<<<<<< HEAD
+
 		.antMatchers("/admin/**","/**").hasRole("ADMIN")
-=======
+
 		.antMatchers("/admin/**").hasRole("ADMIN")
->>>>>>> branch 'master' of https://github.com/alfredjaison/Assignment4.git
+
 		.antMatchers("/**").hasRole("USER")
 		.antMatchers("/","/js/**","/css/**","/img/**","/**").permitAll()
 		
